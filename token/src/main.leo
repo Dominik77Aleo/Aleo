@@ -11,8 +11,9 @@ program token.aleo {
         };
     }
 
-    transition transferToRecipient(receiver: address, amount: u64, input: Token) -> (Token, Token) {
-        let balance: u64 = input.balance - amount;
+    transition transferToRecipientWithFee(receiver: address, amount: u64, input: Token) -> (Token, Token) {
+        let fee: u64 = 2u64;
+        let balance: u64 = input.balance - amount - fee;
         let recipient: Token = Token {
             owner: receiver,
             balance: amount 
